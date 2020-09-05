@@ -1,0 +1,54 @@
+
+# Author: Jason D. Kelleher
+# https://github.com/jdkelleher/mailman3-install
+
+# ***
+# This file will be sourced by the various install scripts to set needed environment variables.
+# ***
+
+
+
+# Sane defauls will be set based on hostname if left undefined
+#
+#export DOMAIN='example.com'					# Domain name
+#export MAIL_NAME="lists.${DOMAIN_NAME}"			# Name correspondnig to MX, A, and AAAA records
+#export ADMIN_EMAIL='admin-notifications@${MAIL_NAME}"		# Email for admin notifications
+
+
+# Sane defauls will be set based on letsencrypt if left undefined; smtp and smtpd values should match
+#
+#export SMTPD_TLS_CERT_FILE='/etc/letsencrypt/live/lists.example.com/fullchain.pem' 	# TLS cert file
+#export SMTPD_TLS_KEY_FILE='/etc/letsencrypt/live/lists.example.com/privkey.pem'	# TLS key file
+#export SMTPD_TLS_CAPATH='/etc/ssl/certs'						# CA path
+#export SMTPD_TLS_CAFILE=/etc/ssl/certs/ca-certificates.crt'				# CA file
+#export SMTP_TLS_CERT_FILE='/etc/letsencrypt/live/lists.example.com/fullchain.pem' 	# TLS cert file
+#export SMTP_TLS_KEY_FILE='/etc/letsencrypt/live/lists.example.com/privkey.pem'		# TLS key file
+#export SMTP_TLS_CAPATH='/etc/ssl/certs'						# CA path
+#export SMTP_TLS_CAFILE='/etc/ssl/certs/ca-certificates.crt'				# CA file
+
+
+
+
+
+### DO NOT EDIT (unless you understand what's going on here) ###
+#
+# These calcualted values are used across several scripts
+#
+
+[ -z "$DOMAIN_NAME" ] && export DOMAIN_NAME=`dnsdomainname`
+[ -z "$MAIL_NAME" ] && export MAIL_NAME=`uname -n`
+[ -z "$ADMIN_EMAIL" ] && export ADMIN_EMAIL="admin-notifications@${MAIL_NAME}"
+
+
+LETSENCRYPT_PATH='/etc/letsencrypt/live/'
+[ -z "$SMTPD_TLS_CERT_FILE" ]	&& export SMTPD_TLS_CERT_FILE="${LETSENCRYPT_PATH}/${MAIL_NAME}/fullchain.pem"
+[ -z "$SMTPD_TLS_KEY_FILE" ]	&& export SMTPD_TLS_KEY_FILE="${LETSENCRYPT_PATH}/${MAIL_NAME}/privkey.pem"
+[ -z "$SMTPD_TLS_CAPATH" ]	&& export SMTPD_TLS_CAPATH='/etc/ssl/certs'
+[ -z "$SMTPD_TLS_CAFILE" ]	&& export SMTPD_TLS_CAFILE="${SMTPD_TLS_CAPATH}/ca-bundle.crt"
+[ -z "$SMTP_TLS_CERT_FILE" ]	&& export SMTP_TLS_CERT_FILE="${SMTPD_TLS_CERT_FILE}"
+[ -z "$SMTP_TLS_KEY_FILE" ]	&& export SMTP_TLS_KEY_FILE="${SMTPD_TLS_KEY_FILE}"
+[ -z "$SMTP_TLS_CAPATH" ]	&& export SMTP_TLS_CAPATH="${SMTPD_TLS_CAPATH}"
+[ -z "$SMTP_TLS_CAFILE" ]	&& export SMTP_TLS_CAFILE="${SMTPD_TLS_CAFILE}"
+
+
+
