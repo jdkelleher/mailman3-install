@@ -83,20 +83,20 @@ sudo postconf -e 'smtpd_helo_restrictions = reject_invalid_helo_hostname, reject
 
 # TLS
 #
-sudo postconf -e 'smtpd_tls_security_level = may'
-sudo postconf -e 'smtp_tls_security_level = may'
-sudo postconf -e 'smtp_tls_note_starttls_offer = yes'
-sudo postconf -e 'smtpd_tls_received_header = yes'
-sudo postconf -e "smtpd_tls_cert_file = ${SMTPD_TLS_CERT_FILE}"
-sudo postconf -e "smtpd_tls_key_file = ${SMTPD_TLS_KEY_FILE}"
-sudo postconf -e "smtpd_tls_CApath = ${SMTPD_TLS_CAPATH}"
-sudo postconf -e "smtpd_tls_CAfile = ${SMTPD_TLS_CAFILE}"
-sudo postconf -e "smtp_tls_cert_file = ${SMTP_TLS_CERT_FILE}"
-sudo postconf -e "smtp_tls_key_file = ${SMTP_TLS_KEY_FILE}"
-sudo postconf -e "smtp_tls_CApath = ${SMTP_TLS_CAPATH}"
-sudo postconf -e "smtp_tls_CAfile = ${SMTP_TLS_CAFILE}"
-sudo postconf -e 'smtpd_tls_loglevel = 1'
-sudo postconf -e 'smtpd_tls_session_cache_timeout = 3600s'
+sudo postconf -e 'smtpd_security_level = may'
+sudo postconf -e 'smtp_security_level = may'
+sudo postconf -e 'smtp_note_starttls_offer = yes'
+sudo postconf -e 'smtpd_received_header = yes'
+sudo postconf -e "smtpd_cert_file = ${TLS_CERT_FILE}"
+sudo postconf -e "smtpd_key_file = ${TLS_KEY_FILE}"
+sudo postconf -e "smtpd_CApath = ${TLS_CAPATH}"
+sudo postconf -e "smtpd_CAfile = ${TLS_CAFILE}"
+sudo postconf -e "smtp_cert_file = ${TLS_CERT_FILE}"
+sudo postconf -e "smtp_key_file = ${TLS_KEY_FILE}"
+sudo postconf -e "smtp_CApath = ${TLS_CAPATH}"
+sudo postconf -e "smtp_CAfile = ${TLS_CAFILE}"
+sudo postconf -e 'smtpd_loglevel = 1'
+sudo postconf -e 'smtpd_session_cache_timeout = 3600s'
 sudo postconf -e 'tls_random_source = dev:/dev/urandom'
 
 # SPF

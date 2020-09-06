@@ -15,16 +15,13 @@
 #export ADMIN_EMAIL='admin-notifications@${MAIL_NAME}"		# Email for admin notifications
 
 
-# Sane defauls will be set based on letsencrypt if left undefined; smtp and smtpd values should match
+# Sane defauls will be set based on letsencrypt if left undefined
 #
-#export SMTPD_TLS_CERT_FILE='/etc/letsencrypt/live/lists.example.com/fullchain.pem' 	# TLS cert file
-#export SMTPD_TLS_KEY_FILE='/etc/letsencrypt/live/lists.example.com/privkey.pem'	# TLS key file
-#export SMTPD_TLS_CAPATH='/etc/ssl/certs'						# CA path
-#export SMTPD_TLS_CAFILE=/etc/ssl/certs/ca-certificates.crt'				# CA file
-#export SMTP_TLS_CERT_FILE='/etc/letsencrypt/live/lists.example.com/fullchain.pem' 	# TLS cert file
-#export SMTP_TLS_KEY_FILE='/etc/letsencrypt/live/lists.example.com/privkey.pem'		# TLS key file
-#export SMTP_TLS_CAPATH='/etc/ssl/certs'						# CA path
-#export SMTP_TLS_CAFILE='/etc/ssl/certs/ca-certificates.crt'				# CA file
+#export TLS_CERT_FILE='/etc/letsencrypt/live/lists.example.com/fullchain.pem' 		# TLS cert file
+#export TLS_KEY_FILE='/etc/letsencrypt/live/lists.example.com/privkey.pem'		# TLS key file
+#export TLS_TRUSTED_CERT_FILE='/etc/letsencrypt/live/lists.example.com/fullchain.pem'	# Used for OCSP stapling
+#export TLS_CAPATH='/etc/ssl/certs'							# CA path
+#export TLS_CAFILE='/etc/ssl/certs/ca-certificates.crt'					# CA file
 
 
 
@@ -41,14 +38,11 @@
 
 
 LETSENCRYPT_PATH='/etc/letsencrypt/live/'
-[ -z "$SMTPD_TLS_CERT_FILE" ]	&& export SMTPD_TLS_CERT_FILE="${LETSENCRYPT_PATH}/${MAIL_NAME}/fullchain.pem"
-[ -z "$SMTPD_TLS_KEY_FILE" ]	&& export SMTPD_TLS_KEY_FILE="${LETSENCRYPT_PATH}/${MAIL_NAME}/privkey.pem"
-[ -z "$SMTPD_TLS_CAPATH" ]	&& export SMTPD_TLS_CAPATH='/etc/ssl/certs'
-[ -z "$SMTPD_TLS_CAFILE" ]	&& export SMTPD_TLS_CAFILE="${SMTPD_TLS_CAPATH}/ca-bundle.crt"
-[ -z "$SMTP_TLS_CERT_FILE" ]	&& export SMTP_TLS_CERT_FILE="${SMTPD_TLS_CERT_FILE}"
-[ -z "$SMTP_TLS_KEY_FILE" ]	&& export SMTP_TLS_KEY_FILE="${SMTPD_TLS_KEY_FILE}"
-[ -z "$SMTP_TLS_CAPATH" ]	&& export SMTP_TLS_CAPATH="${SMTPD_TLS_CAPATH}"
-[ -z "$SMTP_TLS_CAFILE" ]	&& export SMTP_TLS_CAFILE="${SMTPD_TLS_CAFILE}"
+[ -z "$TLS_CERT_FILE" ]	&& export TLS_CERT_FILE="${LETSENCRYPT_PATH}/${MAIL_NAME}/fullchain.pem"
+[ -z "$TLS_KEY_FILE" ]	&& export TLS_KEY_FILE="${LETSENCRYPT_PATH}/${MAIL_NAME}/privkey.pem"
+[ -z "$TLS_TRUSTED_CERT_FILE" ]	&& export TLS_TRUSTED_CERT_FILE="${LETSENCRYPT_PATH}/${MAIL_NAME}/chain.pem"
+[ -z "$TLS_CAPATH" ]	&& export TLS_CAPATH='/etc/ssl/certs'
+[ -z "$TLS_CAFILE" ]	&& export TLS_CAFILE="${TLS_CAPATH}/ca-bundle.crt"
 
 
 
