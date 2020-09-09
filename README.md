@@ -1,4 +1,4 @@
-# mailman3-install
+# mailman3-install - still work in progress
 
 Description
 ===========
