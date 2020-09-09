@@ -35,5 +35,5 @@ sudo certbot certonly --standalone --non-interactive --agree-tos --no-eff-email 
 chgrp -hR ssl-cert /etc/letsencrypt/archive /etc/letsencrypt/live					# this shouldn't be hard-coded
 find /etc/letsencrypt/archive /etc/letsencrypt/live -type d -print0 | xargs --null chmod g+rws 		# this path shouldn't be hard-coded
 
-
+# should make sure renwals are automated. might need hooks to make sure ngnix isn't on port 80 during renewal or use it's webroot for renewal ???
 
